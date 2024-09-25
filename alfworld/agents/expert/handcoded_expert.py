@@ -303,7 +303,7 @@ class BasePolicy(object):
 
         # SLICE
         if sub_action == 'slice':
-            if len(self.visible_objects) == 0:
+            if len(self.visible_objects) == 0 or len(objs_of_interest) == 0:
                 return "examine {}".format(self.curr_recep)
             else:
                 obj = random.choice(objs_of_interest)
