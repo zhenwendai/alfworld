@@ -264,7 +264,7 @@ class BasePolicy(object):
         if sub_action == 'take':
             if "closed" in obs and not self.checked_inside_curr_recep and len(self.visible_objects) == 0:
                 return "open {}".format(self.curr_recep)
-            elif len(self.visible_objects) == 0 or not any(sub_param in o for o in self.visible_objects):
+            elif len(self.visible_objects) == 0 or not any(sub_param in o for o in self.visible_objects) or len(objs_of_interest) == 0:
                 return "examine {}".format(self.curr_recep)
             else:
                 obj = random.choice(objs_of_interest)
@@ -312,7 +312,7 @@ class BasePolicy(object):
 
         # USE
         if sub_action == 'use':
-            if len(self.visible_objects) == 0:
+            if len(self.visible_objects) == 0 or len(objs_of_interest) == 0:
                 return "examine {}".format(self.curr_recep)
             else:
                 obj = random.choice(objs_of_interest)
